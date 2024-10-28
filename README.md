@@ -21,7 +21,6 @@ Hrvatski
 - **Naziv**: Naziv igre
 - **Žanr**: Žanrovi igre
 - **Platforme**: Platforme na kojima je igra dostupna
-- **Razvijač**: Tvrtka koja je razvila igru
 - **Izdavač**: Tvrtka koja je izdala igru
 - **Godina izlaska**: Godina kada je igra objavljena
 - **Prosječna ocjena**: Ocjena prema recenzijama
