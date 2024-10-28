@@ -26,5 +26,5 @@ Hrvatski
 - **Godina izlaska**: Godina kada je igra objavljena
 - **Prosječna ocjena**: Ocjena prema recenzijama
 - **Broj igrača**: Singleplayer ili Multiplayer opcija
-- **Cijena**: Trenutna cijena igre u dolarima
+- **Cijena**: Trenutna cijena igre u eurima
 - **Likovi**: Glavni likovi igre
