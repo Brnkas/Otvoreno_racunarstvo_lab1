@@ -1,0 +1,106 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "id",
+        "naziv",
+        "zanr",
+        "platforme",
+        "razvijac",
+        "izdavac",
+        "godina_izlaska",
+        "prosjecna_ocjena",
+        "broj_igraca",
+        "cijena"
+    ],
+    "properties": {
+        "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema"
+        },
+        "naziv": {
+            "type": "string",
+            "default": "",
+            "title": "The naziv Schema"
+        },
+        "zanr": {
+            "type": "string",
+            "default": "",
+            "title": "The zanr Schema"
+        },
+        "platforme": {
+            "type": "string",
+            "default": "",
+            "title": "The platforme Schema"
+        },
+        "razvijac": {
+            "type": "string",
+            "default": "",
+            "title": "The razvijac Schema"
+        },
+        "izdavac": {
+            "type": "string",
+            "default": "",
+            "title": "The izdavac Schema"
+        },
+        "godina_izlaska": {
+            "type": "integer",
+            "default": 0,
+            "title": "The godina_izlaska Schema"
+        },
+        "prosjecna_ocjena": {
+            "type": "number",
+            "default": 0.0,
+            "title": "The prosjecna_ocjena Schema"
+        },
+        "broj_igraca": {
+            "type": "string",
+            "default": "",
+            "title": "The broj_igraca Schema"
+        },
+        "cijena": {
+            "type": "number",
+            "default": 0.0,
+            "title": "The cijena Schema"
+        }
+    }
+}
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "id",
+        "ime",
+        "prezime",
+        "videoigra_id"
+    ],
+    "properties": {
+        "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema"
+        },
+        "ime": {
+            "type": "string",
+            "default": "",
+            "title": "The ime Schema"
+        },
+        "prezime": {
+            "type": "string",
+            "default": "",
+            "title": "The prezime Schema"
+        },
+        "videoigra_id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The videoigra_id Schema"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+id,naziv,zanr,platforme,razvijac,izdavac,godina_izlaska,prosjecna_ocjena,broj_igraca,cijena
+1,The Witcher 3,RPG | Akcija,PC | PlayStation | Xbox | Nintendo Switch,CD Projekt Red,CD Projekt,2015,4.9,Singleplayer,39.99
+2,Cyberpunk 2077,RPG | Akcija,PC | PlayStation | Xbox,CD Projekt Red,CD Projekt,2020,4.0,Singleplayer,49.99
+3,Red Dead Redemption 2,Akcija | Avantura,PC | PlayStation | Xbox,Rockstar Games,Rockstar Games,2018,4.8,Singleplayer | Multiplayer,59.99
+4,Elden Ring,RPG | Akcija,PC | PlayStation | Xbox,FromSoftware,Bandai Namco Entertainment,2022,4.7,Singleplayer | Multiplayer,59.99
+5,Dark Souls 3,RPG | Akcija,PC | PlayStation | Xbox,FromSoftware,Bandai Namco Entertainment,2016,4.6,Singleplayer,39.99
+6,Minecraft,Sandbox | Kreativna,PC | PlayStation | Xbox | Nintendo Switch | Mobile,Mojang Studios,Mojang Studios,2011,4.5,Singleplayer | Multiplayer,26.95
+7,The Legend of Zelda: Breath of the Wild,Akcija | Avantura,Nintendo Switch,Nintendo,Nintendo,2017,4.9,Singleplayer,59.99
+8,God of War,Akcija | Avantura,PC | PlayStation,Santa Monica Studio,Sony Interactive Entertainment,2018,4.9,Singleplayer,49.99
+9,Hades,Roguelike | Akcija,PC | Nintendo Switch,Supergiant Games,Supergiant Games,2020,4.8,Singleplayer,24.99
+10,Civilization VII,Strategija | Simulacija,PC,Firaxis Games,2K Games,2024,4.5,Singleplayer | Multiplayer,59.99
