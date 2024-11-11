@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Funkcija za preuzimanje podataka u CSV formatu
         function downloadCSV() {
-            const table = document.getElementById("likovi-table"); // Ovdje se koristi tablica za likove, isto možete napraviti i za igrice
-            let csvContent = "ID,Ime,Prezime,Videoigra ID\n";  // Dodajte odgovarajuće nazive stupaca
+            const table = document.getElementById("likovi-table"); 
+            let csvContent = "ID,Ime,Prezime,Videoigra ID\n";
 
-            // Izdvajanje podataka iz tablice
             for (let row of table.rows) {
                 let rowData = [];
                 for (let cell of row.cells) {
-                    rowData.push(cell.textContent);  // Ispisujemo sadržaj svake ćelije
+                    rowData.push(cell.textContent); 
                 }
                 csvContent += rowData.join(",") + "\n";
             }
@@ -36,7 +34,7 @@
             let data = [];
 
             // Izdvajanje podataka iz tablice
-            for (let i = 1; i < rows.length; i++) {  // Prebacujemo od 1 jer prva linija su nazivi stupaca
+            for (let i = 1; i < rows.length; i++) {
                 let rowData = {};
                 const cells = rows[i].cells;
                 rowData.id = cells[0].textContent;
@@ -59,7 +57,6 @@
 <body>
     <h1>Likovi i Igrice</h1>
 
-    <!-- Obrazac za filtriranje likova -->
     <div>
         <h2>Pretraži Likove</h2>
         <input type="text" id="filter-likovi" placeholder="Pretraži likove">
@@ -72,7 +69,6 @@
         <button onclick="fetchData('likovi')">Pretraži</button>
     </div>
 
-    <!-- Tablica za prikaz likova -->
     <h2>Likovi</h2>
     <table id="likovi-table">
         <thead>
@@ -90,7 +86,6 @@
         <button onclick="downloadJSON()">Preuzmi kao JSON</button>
     </div>
 
-    <!-- Obrazac za filtriranje igrica -->
     <div>
         <h2>Pretraži Igrice</h2>
         <input type="text" id="filter-videoigre" placeholder="Pretraži videoigre">
@@ -103,7 +98,6 @@
         <button onclick="fetchData('videoigre')">Pretraži</button>
     </div>
 
-    <!-- Tablica za prikaz igrica -->
     <h2>Videoigre</h2>
     <table id="videoigre-table">
         <thead>
@@ -128,36 +122,34 @@
     </div>
 
     <script>
-        // Funkcija za dohvat podataka za likove ili videoigre
         function fetchData(type) {
             let filter = document.getElementById(`filter-${type}`).value;
             let atribut = document.getElementById(`filter-${type}-atribut`).value;
             let url = `/api/${type}`;
 
-            // Ako postoji filter, dodajte ga kao query parametar
             if (filter) {
                 url += `?search=${filter}&atribut=${atribut}`;
             }
 
             $.get(url, function(data) {
                 const tableBody = $(`#${type}-table tbody`);
-                tableBody.empty(); // Očistite tablicu prije nego popunite s novim podacima
+                tableBody.empty(); 
 
                 data.forEach(item => {
                     let row = "<tr>";
                     for (const key in item) {
-                        row += `<td>${item[key]}</td>`; // Dodajemo svaki podatak u ćeliju
+                        row += `<td>${item[key]}</td>`;
                     }
                     row += "</tr>";
-                    tableBody.append(row); // Dodajte red u tablicu
+                    tableBody.append(row); 
                 });
             });
         }
 
         // Dohvat svih podataka na učitavanje stranice
         $(document).ready(function() {
-            fetchData('likovi');  // Automatski dohvatite likove
-            fetchData('videoigre');  // Automatski dohvatite videoigre
+            fetchData('likovi');  
+            fetchData('videoigre'); 
         });
     </script>
 </body>
