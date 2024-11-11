@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaz Likova i Igrica</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Funkcija za preuzimanje podataka u CSV formatu
+        function downloadCSV() {
+            const table = document.getElementById("likovi-table"); // Ovdje se koristi tablica za likove, isto možete napraviti i za igrice
+            let csvContent = "ID,Ime,Prezime,Videoigra ID\n";  // Dodajte odgovarajuće nazive stupaca
+
+            // Izdvajanje podataka iz tablice
+            for (let row of table.rows) {
+                let rowData = [];
+                for (let cell of row.cells) {
+                    rowData.push(cell.textContent);  // Ispisujemo sadržaj svake ćelije
+                }
+                csvContent += rowData.join(",") + "\n";
+            }
+
+            // Preuzimanje CSV datoteke
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'likovi.csv';  // Možete dodati naziv za igricu ili drugu varijantu
+            link.click();
+        }
+
+        // Funkcija za preuzimanje podataka u JSON formatu
+        function downloadJSON() {
+            const table = document.getElementById("likovi-table");
+            const rows = table.rows;
+            let data = [];
+
+            // Izdvajanje podataka iz tablice
+            for (let i = 1; i < rows.length; i++) {  // Prebacujemo od 1 jer prva linija su nazivi stupaca
+                let rowData = {};
+                const cells = rows[i].cells;
+                rowData.id = cells[0].textContent;
+                rowData.ime = cells[1].textContent;
+                rowData.prezime = cells[2].textContent;
+                rowData.videoigra_id = cells[3].textContent;
+
+                data.push(rowData);
+            }
+
+            // Preuzimanje JSON datoteke
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'likovi.json';
+            link.click();
+        }
+    </script>
+</head>
+<body>
+    <h1>Likovi i Igrice</h1>
+
+    <!-- Obrazac za filtriranje likova -->
+    <div>
+        <h2>Pretraži Likove</h2>
+        <input type="text" id="filter-likovi" placeholder="Pretraži likove">
+        <select id="filter-likovi-atribut">
+            <option value="all">Pretražuj po svim atributima</option>
+            <option value="ime">Ime</option>
+            <option value="prezime">Prezime</option>
+            <option value="videoigra_id">Videoigra ID</option>
+        </select>
+        <button onclick="fetchData('likovi')">Pretraži</button>
+    </div>
+
+    <!-- Tablica za prikaz likova -->
+    <h2>Likovi</h2>
+    <table id="likovi-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Videoigra ID</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div>
+        <button onclick="downloadCSV()">Preuzmi kao CSV</button>
+        <button onclick="downloadJSON()">Preuzmi kao JSON</button>
+    </div>
+
+    <!-- Obrazac za filtriranje igrica -->
+    <div>
+        <h2>Pretraži Igrice</h2>
+        <input type="text" id="filter-videoigre" placeholder="Pretraži videoigre">
+        <select id="filter-videoigre-atribut">
+            <option value="all">Pretražuj po svim atributima</option>
+            <option value="naziv">Naziv</option>
+            <option value="zanr">Žanr</option>
+            <option value="platforme">Platforme</option>
+        </select>
+        <button onclick="fetchData('videoigre')">Pretraži</button>
+    </div>
+
+    <!-- Tablica za prikaz igrica -->
+    <h2>Videoigre</h2>
+    <table id="videoigre-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Naziv</th>
+                <th>Žanr</th>
+                <th>Platforme</th>
+                <th>Razvijač</th>
+                <th>Izdavač</th>
+                <th>Godina izlaska</th>
+                <th>Prosječna ocjena</th>
+                <th>Broj igrača</th>
+                <th>Cijena</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div>
+        <button onclick="downloadCSV()">Preuzmi kao CSV</button>
+        <button onclick="downloadJSON()">Preuzmi kao JSON</button>
+    </div>
+
+    <script>
+        // Funkcija za dohvat podataka za likove ili videoigre
+        function fetchData(type) {
+            let filter = document.getElementById(`filter-${type}`).value;
+            let atribut = document.getElementById(`filter-${type}-atribut`).value;
+            let url = `/api/${type}`;
+
+            // Ako postoji filter, dodajte ga kao query parametar
+            if (filter) {
+                url += `?search=${filter}&atribut=${atribut}`;
+            }
+
+            $.get(url, function(data) {
+                const tableBody = $(`#${type}-table tbody`);
+                tableBody.empty(); // Očistite tablicu prije nego popunite s novim podacima
+
+                data.forEach(item => {
+                    let row = "<tr>";
+                    for (const key in item) {
+                        row += `<td>${item[key]}</td>`; // Dodajemo svaki podatak u ćeliju
+                    }
+                    row += "</tr>";
+                    tableBody.append(row); // Dodajte red u tablicu
+                });
+            });
+        }
+
+        // Dohvat svih podataka na učitavanje stranice
+        $(document).ready(function() {
+            fetchData('likovi');  // Automatski dohvatite likove
+            fetchData('videoigre');  // Automatski dohvatite videoigre
+        });
+    </script>
+</body>
+</html>
