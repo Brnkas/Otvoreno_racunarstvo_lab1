@@ -1,4 +1,4 @@
-# Otvoreno_racunarstvo_lab1
+# Otvoreno_racunarstvo_lab2
 Baza podataka videoigara
 # Otvoreni podaci: Videoigre
 
@@ -12,7 +12,7 @@ Ovaj skup podataka licenciran je pod [Creative Commons Zero (CC0)](https://creat
 Ime i prezime: Karlo Boras
 
 ## Verzija
-Verzija 1.0
+Verzija 2.0
 
 ## Jezik
 Hrvatski
